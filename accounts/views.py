@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-from .serializers import AccountSerializers, UserLoginSerializer
+from .serializers import AccountSerializers, UserLoginSerializer, GetUserNameSerialzers
 from rest_framework import viewsets,status,generics
 from rest_framework.views import APIView
 from django.contrib.auth.models import User
@@ -51,6 +51,15 @@ def activate(request, uid64, token):
     else:
         return HttpResponse("Activation link is invalid!", status=status.HTTP_400_BAD_REQUEST)
     
+class GetAllUserApiView(APIView):
+    def get(self, request):
+        try:
+            user = User.objects.all()
+            serializer = GetUserNameSerialzers(user, many= True)
+            return Response(serializer.data)
+        except User.DoesNotExist:
+            return Response({'error': 'User not found'}, status=status.HTTP_404_NOT_FOUND)
+
 class UserLoginApiView(APIView):
      def post(self,request):
           serializer = UserLoginSerializer(data = request.data)
