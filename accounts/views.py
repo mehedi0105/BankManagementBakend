@@ -28,7 +28,7 @@ class AccountRegisterApiView(APIView):
 
             token = default_token_generator.make_token(user)
             uid = urlsafe_base64_encode(force_bytes(user.pk))
-            confirm_link = f"http://127.0.0.1:8000/accounts/activate/{uid}/{token}/"
+            confirm_link = f"https://bankmanagementbakend.onrender.com/accounts/activate/{uid}/{token}/"
             name = f"Hello {user.first_name}"
             email_subject = "Verify Your Email Address - Complete Your Registration"
             email_body = render_to_string('./register_email.html',{'confirm_link':confirm_link, 'name':name})
