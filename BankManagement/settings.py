@@ -55,6 +55,7 @@ INSTALLED_APPS = [
 
     'rest_framework',
     'rest_framework.authtoken',
+    'corsheaders',
 ]
 
 CORS_ORIGIN_ALLOW_ALL = True
@@ -67,6 +68,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 
 ]
 
@@ -162,5 +164,7 @@ EMAIL_HOST_PASSWORD = env("EMAIL_PASSWORD")
 
 
 CSRF_TRUSTED_ORIGINS = [
-    'https://bankmanagementbakend.onrender.com'
+    'https://bankmanagementbakend.onrender.com',
+    "http://127.0.0.1:5500",
+    "http://localhost:5500",
 ]
