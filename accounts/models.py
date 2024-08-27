@@ -6,7 +6,6 @@ from .constraints import ACCAUNT_TYPE, GENDER
 
 class UserAccount (models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    profile_img = models.ImageField(upload_to='accounts/media/uploads', blank=True, null=True)
     account_type = models.CharField(max_length=100, choices=ACCAUNT_TYPE)
     account_no = models.IntegerField(unique=True)
     birth_date = models.DateField(null=True, blank=True)

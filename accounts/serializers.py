@@ -21,7 +21,6 @@ class AccountSerializers(serializers.ModelSerializer):
             'email',
             'password',
             'confirm_password',
-            'profile_img',
             'account_type',
             'account_no',
             'birth_date',
@@ -38,7 +37,6 @@ class AccountSerializers(serializers.ModelSerializer):
         first_name = self.validated_data['first_name']
         last_name = self.validated_data['last_name']
         email = self.validated_data['email']
-        profile_img = self.validated_data['profile_img']
         account_type = self.validated_data['account_type']
         account_no = self.validated_data['account_no']
         birth_date = self.validated_data['birth_date']
@@ -66,7 +64,6 @@ class AccountSerializers(serializers.ModelSerializer):
 
         models.UserAccount.objects.create(
             user = account,
-            profile_img = profile_img,
             account_type = account_type,
             account_no = account_no,
             birth_date = birth_date,
