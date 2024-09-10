@@ -77,6 +77,11 @@ class AccountSerializers(serializers.ModelSerializer):
         )
         return account
 
+class GetAllaccountsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.UserAccount
+        fields = '__all__'
+
 class UserLoginSerializer(serializers.Serializer):
     username = serializers.CharField(required = True)
     password = serializers.CharField(required = True)
