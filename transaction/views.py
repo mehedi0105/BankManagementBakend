@@ -7,6 +7,7 @@ from rest_framework import  status
 from accounts import models as accounts
 from accounts.serializers import AccountSerializers
 from django.http import Http404
+from decimal import Decimal
 # Create your views here.
 class TransactionApiVeiw(APIView):
     def get(self,request):
@@ -23,7 +24,7 @@ class TransactionApiVeiw(APIView):
 
 class DepositeMoneyApiView(APIView):
     def post(self,request, format=None):
-        amount = request.data.get('amount')
+        amount = Decimal(request.data.get('amount'))
         try:
             user = self.request.user
             account = accounts.UserAccount._default_manager.get(user = user)
